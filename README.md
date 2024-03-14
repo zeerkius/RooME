@@ -1,4 +1,4 @@
-# COMP-3322_Project
+# RooMe
 Software Engineering Group Project
 
 Team Name: Young Innovators
