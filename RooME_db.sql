@@ -28,7 +28,7 @@ CREATE TABLE  User_Personality(
 ID int primary key,
 Zodiac_sign varchar(30),
 Cleanliness int,
-Organization int,
+Organization_ int,
 Social_link varchar(30), -- we can maybe have them specify what the link is for in their bio?
 Major varchar(30),
 Minor varchar(30), 
@@ -37,7 +37,7 @@ Hygenic int,
 Bed_Time  varchar(30),-- we are going to have specify to the user format in advance
 Volume int
 );
-INSERT INTO User_Personality (ID,Zodiac_sign,Cleanliness,Organization,Social_link,Major,Minor,Company,Hygenic,Bed_Time,Volume)
+INSERT INTO User_Personality (ID,Zodiac_sign,Cleanliness,Organization_,Social_link,Major,Minor,Company,Hygenic,Bed_Time,Volume)
 VALUES(2576544,"Taurus",7,6,"@bakertoohot","Biology","Mathematics",2,7,"10PM",5),(2775453,"Capricorn",3,1,"@SheloveKyle21","Buissness","Entrepeanuership",9,1,"12PM",7);
 
 
@@ -49,22 +49,25 @@ Caption varchar(30) -- This could be a derived attribute however it is not toall
 );
 
 INSERT INTO User_Pictures (ID,Profile_Pic,Post,Caption)
-VALUES(2576544,   ,    ,       , ),(2775453,     ,     ,        ,);
+VALUES(2576544,   ,    ,       , ),(2775453,     ,     ,        ,); -- insert values when they become able to be inserted with the interface
 
 
 CREATE TABLE Review_Board(
-
-
-
-
-
-
-
-
-
-
+    Review_creator_ID int ,
+    Review varchar(250),
+    Review_who_it_pertains_to_ID int, -- We will use this so that the user can see who these review pertain two
+    Cleanliness int,
+    Organization_ int,
+    Company int,
+    Hygenic int,
+    Bed_Time varchar(30),
+    Volume int,
+    PRIMARY KEY(Review_creator_ID),
+    CONSTRAINT Comparison_Table
+FOREIGN KEY (Review_who_it_pertains_to_ID)
+    REFERENCES User_Personality(Review_Creator_ID) -- Creating the comparison table using a foreign key
 
 );
 
 
-
+-- INSERT SYNTHETIC REVIEW HERE
