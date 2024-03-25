@@ -62,6 +62,7 @@ CREATE TABLE Review_Board(
     Hygenic int,
     Bed_Time varchar(30),
     Volume int,
+    Truth_Score decimal,
     PRIMARY KEY(Review_creator_ID),
     CONSTRAINT Comparison_Table
 FOREIGN KEY (Review_who_it_pertains_to_ID)
@@ -70,4 +71,10 @@ FOREIGN KEY (Review_who_it_pertains_to_ID)
 );
 
 
--- INSERT SYNTHETIC REVIEW HERE
+INSERT INTO Review_Board (Review_creator_ID,Review,Review_who_it_pertains_to_ID,Cleanliness,Organization_,Company,Hygenic,Bed_Time,Volume,Truth_Score)
+VALUES (2576544,"Kyle is always partying and isa horrible roomate. He is very unclean as well as 
+being unconsiderate to his roomate.",2775453,2,0,10,10,"None",10,--this will be the average of all the ratios of his scores),(2775453,"Armani is such a bad roomate he tells 
+everyone that he is a nerd , but really he is a party animal",2,2,10,10,1,"10PM",2576544,-- the average of all the ratios of the scores)
+-- We will display both extremes with the review board
+-- Kyle will have  avery favorable Truth Score however will be a undesireable roomate , as well as the staple of the app the "Liar"
+-- Armani will have a very good self represented score however his reviews will show that he is a liar , and actually a very bad roomate
