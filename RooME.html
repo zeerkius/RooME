@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang= "en"
+<html lang="en"
 <head>
-    <meta charset="UTF-8"
-    <meta http-equiv="X-UA-Compatible" content = "IE=edge">
-    <meta name = "viewport" content=""width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Image to Base 64 Data URL</title>
 </head>
 <body>
+    <label for ="fileInput">ProfilePic:</label> <!-- label for profile pic data is inputed in script-->
     <input type="file" id="fileInput">
-
-     <script>
-          const fileInput = document.getElementById("fileInput"); <!-- Where the user gives input-->
      
-        fileInput.addEventListener("change", e=>{
-           console.log(e);
+    <script>
+       const fileInput = document.getElementById("fileInput");
+       
+       fileInput.addEventListener("change", e=>{
            const file = fileInput.files[0]
            const reader = new FileReader();
 
 
 
-           reader.addEventListener(" load", () => {
+           reader.addEventListener("load", () => {
                console.log(reader.result);
            });
-           reader.readAsDataURL(file);
+
+           reader.readAsDataURL(document.querySelector('input').files[0]);
         });
-     
-     
-     </script>
+    </script>
+</body>
 </html>
-<!-- This will allow us to  =turn images into BLOB's so that we can save them in our database>
+
