@@ -15,7 +15,7 @@ VALUES (2576544,"Baker2real40", "Baker14@pvamu.edu","heHlove21@p1"),(2775453,"Sh
 CREATE TABLE Users(
 ID int primary key,
 Name varchar(40),
-Alias_Username varchar(30),
+Alias_Username varchar(30) NOT NULL UNIQUE,
 email varchar(30),
 password varchar(30),
 gender varchar(30),
@@ -43,38 +43,29 @@ VALUES(2576544,"Taurus",7,6,"@bakertoohot","Biology","Mathematics",2,7,"10PM",5)
 
 CREATE TABLE User_Pictures(
 ID int primary key,
-Profile_Pic blob, -- might have to use java script code to make a blob from jpeg
-Post blob, -- we will derive likes from the post 
-Caption varchar(30) -- This could be a derived attribute however it is not toally obvious how to store it
+Profile_Pic blob -- might have to use java script code to make a blob from jpeg
 );
-
-INSERT INTO User_Pictures (ID,Profile_Pic,Post,Caption)
-VALUES(2576544,   ,    ,       , ),(2775453,     ,     ,        ,); -- insert values when they become able to be inserted with the interface
-
+INSERT INTO User_Pictures (ID,Profile_Pic)
+VALUES(2576544,"C:\Users\agboo\Downloads\RooME Armani_Baker.jpg"),(2775453,"C:\Users\agboo\Downloads\RooMe Kyle_Osborne.jpg");
 
 CREATE TABLE Review_Board(
     Review_creator_ID int ,
     Review varchar(250),
-    Review_who_it_pertains_to_ID int, -- We will use this so that the user can see who these review pertain two
+    Review_Alias int NOT NULL REFERENCES Users(ID), -- We will use this so that the user can see who these review pertain two
     Cleanliness int,
     Organization_ int,
     Company int,
     Hygenic int,
     Bed_Time varchar(30),
     Volume int,
-    Truth_Score decimal,
-    PRIMARY KEY(Review_creator_ID),
-    CONSTRAINT Comparison_Table
-FOREIGN KEY (Review_who_it_pertains_to_ID)
-    REFERENCES User_Personality(Review_Creator_ID) -- Creating the comparison table using a foreign key
-
+    Truth_Score decimal
 );
 
 
-INSERT INTO Review_Board (Review_creator_ID,Review,Review_who_it_pertains_to_ID,Cleanliness,Organization_,Company,Hygenic,Bed_Time,Volume,Truth_Score)
+INSERT INTO Review_Board (Review_creator_ID,Review,Review_Alias,Cleanliness,Organization_,Company,Hygenic,Bed_Time,Volume)
 VALUES (2576544,"Kyle is always partying and isa horrible roomate. He is very unclean as well as 
-being unconsiderate to his roomate.",2775453,2,0,10,10,"None",10,--this will be the average of all the ratios of his scores),(2775453,"Armani is such a bad roomate he tells 
-everyone that he is a nerd , but really he is a party animal",2,2,10,10,1,"10PM",2576544,-- the average of all the ratios of the scores)
+being unconsiderate to his roomate.",2775453,2,0,10,10,"None",10),(2775453,"Armani is such a bad roomate he tells 
+everyone that he is a nerd , but really he is a party animal",2,2,10,10,1,"10PM",2576544);
 -- We will display both extremes with the review board
 -- Kyle will have  avery favorable Truth Score however will be a undesireable roomate , as well as the staple of the app the "Liar"
 -- Armani will have a very good self represented score however his reviews will show that he is a liar , and actually a very bad roomate
